@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClubController;
 
 /*
  * ICB0006 - Acceso a datos - proyecto base.
@@ -11,4 +12,12 @@ use Illuminate\Support\Facades\Route;
  * responde. Borrala en cuanto escribas las tuyas.
  */
 
-Route::get('/', fn () => view('home'))->name('home');
+Route::get('/', [ClubController::class, 'welcome']);
+
+Route::get('/equipos', [ClubController::class, 'equipos']);
+
+Route::get('/contacto', [ClubController::class, 'contacto']);
+
+Route::get('/sobre-el-club', [ClubController::class, 'sobreElClub']);
+
+Route::get('/creditos', [ClubController::class, 'creditos']);
