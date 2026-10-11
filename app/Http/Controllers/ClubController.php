@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ClubController extends Controller
 {
     function welcome(){
-        return 'Hola, esta es la aplicación de mi club deportivo.';
+        return 'Club Deportivo';
     }
 
     function equipos(){
