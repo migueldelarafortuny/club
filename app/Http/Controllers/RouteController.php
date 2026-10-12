@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -19,12 +18,17 @@ class RouteController extends Controller
         ['id' => 10, 'name' => 'Team 10', 'season' => '2023', 'category' => 'First Division', 'coach' => 'Coach 10']
     ];
 
+    private function listaEquipos(): array
+    {
+        return session('equipos', $this->equipos);
+    }
+
     function welcome(){
         return view('inicio');
     }
 
     function equipos(){
-        return view('equipos', ['equipos' => $this->equipos]);
+        return view('equipos', ['equipos' => $this->listaEquipos()]);
     }
 
     function contacto(){
@@ -40,7 +44,36 @@ class RouteController extends Controller
     }
 
     function ficha($id){
-        $equipo = $this->equipos[$id] ?? null;
-        return view('ficha-equipo', ['equipo' => $equipo]);
+        $equipos = $this->listaEquipos();
+        return view('ficha-equipo', ['equipo' => $equipos[$id] ?? null]);
+    }
+
+    function nuevo(){
+        return view('anadir-equipo');
+    }
+
+    function store(Request $request){
+        // 1. Validar. Devuelve SOLO los campos validados, ya limpios.
+        $datos = $request->validate([
+            'name'     => 'required|string|min:2',
+            'category' => 'required|string',
+            'coach'    => 'required|string',
+            'season'   => 'required|digits:4',
+        ]);
+
+        // 2. Partir de la lista actual.
+        $equipos = $this->listaEquipos();
+
+        // 3. Generar el id: el mayor que haya, más uno.
+        $id = empty($equipos) ? 1 : max(array_keys($equipos)) + 1;
+        $datos['id'] = $id;
+
+        // 4. Añadirlo, usando el id como clave (igual que el resto).
+        $equipos[$id] = $datos;
+
+        // 5. Guardar la lista entera en sesión. ESTO es lo que sobrevive.
+        session(['equipos' => $equipos]);
+
+        return redirect()->route('equipos.index');
     }
 }

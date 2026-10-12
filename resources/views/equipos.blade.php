@@ -15,7 +15,11 @@
             @endforeach
         </ul>
     @endif
-
+    <br>
+     <p><a href="{{ route('equipo.create') }}">Añadir un nuevo equipo</a></p>
+    <br>
     <p>Total de equipos: {{ count($equipos) }}</p>
+    <br>
     <p>Categorías distintas: {{ count(array_unique(array_column($equipos, 'category'))) }}</p>
+
 @endsection

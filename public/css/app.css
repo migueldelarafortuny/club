@@ -43,3 +43,10 @@ code {
     font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
     font-size: .9em;
 }
+
+.error {
+    padding: .5rem 1rem;
+    border-radius: 3px;
+    background: #fdd;
+    color: #900;
+}

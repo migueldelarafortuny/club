@@ -22,4 +22,8 @@ Route::get('/sobre-el-club', [RouteController::class, 'sobreElClub'])->name('sob
 
 Route::get('/creditos', [RouteController::class, 'creditos'])->name('creditos');
 
+Route::get('/equipos/nuevo', [RouteController::class, 'nuevo'])->name('equipo.create');
+
 Route::get('/equipos/{id}', [RouteController::class, 'ficha'])->name('equipo.show')->whereNumber('id');
+
+Route::post('/equipos', [RouteController::class, 'store'])->name('equipo.store');
