@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout')
 @section('content')
     <h1>Equipos</h1>
     <p>Esta es la página de equipos del club deportivo.</p>

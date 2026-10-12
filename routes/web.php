@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RouteController;
+use App\Http\Controllers\RouterController;
 
 /*
  * ICB0006 - Acceso a datos - proyecto base.
@@ -12,14 +12,14 @@ use App\Http\Controllers\RouteController;
  * responde. Borrala en cuanto escribas las tuyas.
  */
 
-Route::get('/', [RouteController::class, 'welcome'])->name('home');
+Route::get('/', [RouterController::class, 'welcome'])->name('home');
 
-Route::get('/equipos', [RouteController::class, 'equipos'])->name('equipos');
+Route::get('/equipos', [RouterController::class, 'equipos'])->name('equipos.index');
 
-Route::get('/contacto', [RouteController::class, 'contacto'])->name('contacto');
+Route::get('/contacto', [RouterController::class, 'contacto'])->name('contacto');
 
-Route::get('/sobre-el-club', [RouteController::class, 'sobreElClub'])->name('sobre');
+Route::get('/sobre-el-club', [RouterController::class, 'sobreElClub'])->name('sobre');
 
-Route::get('/creditos', [RouteController::class, 'creditos'])->name('creditos');
+Route::get('/creditos', [RouterController::class, 'creditos'])->name('creditos');
 
-Route::get('/equipos/{id}', [RouteController::class, 'ficha'])->name('equipo.index')->whereNumber('id');
+Route::get('/equipos/{id}', [RouterController::class, 'ficha'])->name('equipo.show')->whereNumber('id');
