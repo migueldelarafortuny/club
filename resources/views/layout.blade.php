@@ -6,7 +6,6 @@
     <title>{{ config('app.name') }}</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
-Club Deportivo
 <body>
     <nav>
         <!-- Definición de la barra de navegación de la web -->
@@ -23,6 +22,6 @@ Club Deportivo
     </main>
 </body>
 <footer>
-    <p>&copy; {{ date('Y') }} {{ config('app.name') }}. Desde 1990.</p>
+    <p>&copy; {{ date('Y') }} {{ config('app.name') }} Deportivo. Desde 1990.</p>
 </footer>
 </html>
