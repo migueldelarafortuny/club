@@ -17,6 +17,9 @@
             <li><a href="{{ route('creditos') }}">Créditos</a></li>
         </ul>
     </nav>
+    @if (session('status'))
+        <div class="aviso">{{ session('status') }}</div>
+    @endif
     <main>
         @yield('content')
     </main>

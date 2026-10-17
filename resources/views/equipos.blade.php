@@ -15,6 +15,18 @@
             @endforeach
         </ul>
     @endif
+    @if (!empty($vistosRecientemente))
+        <h2>Vistos recientemente</h2>
+        <ul>
+            @foreach ($vistosRecientemente as $equipo)
+                <li>
+                    <a href="{{ route('equipo.show', ['id' => $equipo['id']]) }}">
+                        {{ $equipo['id'] }} - {{ $equipo['name'] }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    @endif
     <br>
      <p><a href="{{ route('equipo.create') }}">Añadir un nuevo equipo</a></p>
     <br>

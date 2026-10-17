@@ -19,9 +19,16 @@ class TeamController extends Controller
         ['id' => 10, 'name' => 'Team 10', 'season' => '2023', 'category' => 'First Division', 'coach' => 'Coach 10']
     ];
 
+    private $vistosRecientemente = [];
+
     private function listaEquipos(): array
     {
         return session('equipos', $this->equipos);
+    }
+
+    private function listaVistosRecientemente(): array
+    {
+        return session('vistosRecientemente', $this->vistosRecientemente);
     }
 
     function welcome(){
@@ -29,7 +36,7 @@ class TeamController extends Controller
     }
 
     function equipos(){
-        return view('equipos', ['equipos' => $this->listaEquipos()]);
+        return view('equipos', ['equipos' => $this->listaEquipos(), 'vistosRecientemente' => $this->listaVistosRecientemente()]);
     }
 
     function contacto(){
@@ -46,6 +53,15 @@ class TeamController extends Controller
 
     function ficha($id){
         $equipos = $this->listaEquipos();
+        if (isset($equipos[$id])) {
+            // Guardar el equipo en la lista de vistos recientemente
+            $vistosRecientemente = $this->listaVistosRecientemente();
+            array_unshift($vistosRecientemente, $equipos[$id]);
+
+            $vistosRecientemente = array_slice($vistosRecientemente, 0, 4);
+
+            session(['vistosRecientemente' => $vistosRecientemente]);
+        }
         return view('ficha-equipo', ['equipo' => $equipos[$id] ?? null]);
     }
 
@@ -70,6 +86,6 @@ class TeamController extends Controller
         // 5. Guardar la lista entera en sesión. ESTO es lo que sobrevive.
         session(['equipos' => $equipos]);
 
-        return redirect()->route('equipos.index');
+        return redirect()->route('equipos.index')->with('status', 'Equipo añadido.');
     }
 }
