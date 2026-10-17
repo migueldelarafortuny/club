@@ -50,3 +50,78 @@ code {
     background: #fdd;
     color: #900;
 }
+
+/* Selecciono la ul que está dentro del elemento con class="menu".
+   Así solo afecto a este menú y no a otras listas del documento. */
+.menu ul {
+    display: flex;        /* Convierte la ul en contenedor flex.
+                           Sus hijos (los li) se colocan en fila. */
+
+  /* flex-direction: row;   <- NO hace falta escribirlo:
+"row" (fila) ya es el valor por defecto.
+ Lo dejo comentado solo para que lo veas. */
+
+    gap: 1.5rem;          /* Espacio entre cada li. 1rem equivale al tamaño
+                        de letra base del documento (normalmente 16px),
+                        así que 1.5rem son unos 24px. Uso rem en lugar
+                        de px para que el diseño escale si el usuario
+                        aumenta el tamaño de letra del navegador. */
+
+    list-style: none;     /* Quita las viñetas (los puntos negros). */
+
+    margin: 0;            /* Quita el margen exterior que el navegador
+                           pone arriba y abajo de la ul por defecto. */
+
+    padding: 0;           /* Quita el padding-left de ~40px que el navegador
+                           pone por defecto y que desplaza la lista
+                           hacia la derecha. */
+
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+/* Ahora los enlaces. Esto es estético, no afecta a la colocación en fila. */
+.menu a {
+  display: block;            /* Un <a> es inline por defecto. Al pasarlo a
+                                block puedo darle padding vertical real y
+                                que toda la caja sea clicable, no solo
+                                las letras. */
+
+  padding: 0.5rem 1rem;      /* Espacio interior: 0.5rem arriba y abajo,
+                                1rem a izquierda y derecha. Cuando pones
+                                dos valores, el primero es vertical y el
+                                segundo horizontal. */
+
+  text-decoration: none;     /* Quita el subrayado por defecto del enlace. */
+
+  color: #1a1a1a;            /* Color del texto, en notación hexadecimal. */
+
+  border-radius: 6px;        /* Esquinas redondeadas, para que el fondo
+                                del :hover quede más agradable. */
+}
+
+/* :hover es una pseudoclase: un estado del elemento.
+   Esta regla se aplica solo cuando el ratón está encima del enlace. */
+.menu a:hover {
+  background-color: #e8e8e8;  /* Fondo gris claro al pasar el ratón.
+                                 Da feedback visual al usuario. */
+}
+
+.menu li {
+  display: inline-block;  /* El li se comporta como una palabra:
+                             se coloca al lado del anterior, pero
+                             acepta width, height y padding. */
+}
+
+main {
+  margin-top: 3rem;
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ccc;
+  text-align: center;
+}

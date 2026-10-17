@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-    <nav>
+    <nav class="menu">
         <!-- Definición de la barra de navegación de la web -->
         <ul>
             <li><a href="{{ route('home') }}">Inicio</a></li>
