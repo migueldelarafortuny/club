@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RouteController;
+use App\Http\Controllers\TeamController;
 
 /*
  * ICB0006 - Acceso a datos - proyecto base.
@@ -12,18 +12,18 @@ use App\Http\Controllers\RouteController;
  * responde. Borrala en cuanto escribas las tuyas.
  */
 
-Route::get('/', [RouteController::class, 'welcome'])->name('home');
+Route::get('/', [TeamController::class, 'welcome'])->name('home');
 
-Route::get('/equipos', [RouteController::class, 'equipos'])->name('equipos.index');
+Route::get('/equipos', [TeamController::class, 'equipos'])->name('equipos.index');
 
-Route::get('/contacto', [RouteController::class, 'contacto'])->name('contacto');
+Route::get('/contacto', [TeamController::class, 'contacto'])->name('contacto');
 
-Route::get('/sobre-el-club', [RouteController::class, 'sobreElClub'])->name('sobre');
+Route::get('/sobre-el-club', [TeamController::class, 'sobreElClub'])->name('sobre');
 
-Route::get('/creditos', [RouteController::class, 'creditos'])->name('creditos');
+Route::get('/creditos', [TeamController::class, 'creditos'])->name('creditos');
 
-Route::get('/equipos/nuevo', [RouteController::class, 'nuevo'])->name('equipo.create');
+Route::get('/equipos/nuevo', [TeamController::class, 'nuevo'])->name('equipo.create');
 
-Route::get('/equipos/{id}', [RouteController::class, 'ficha'])->name('equipo.show')->whereNumber('id');
+Route::get('/equipos/{id}', [TeamController::class, 'ficha'])->name('equipo.show')->whereNumber('id');
 
-Route::post('/equipos', [RouteController::class, 'store'])->name('equipo.store');
+Route::post('/equipos', [TeamController::class, 'store'])->name('equipo.store');

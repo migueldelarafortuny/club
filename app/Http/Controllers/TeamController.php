@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTeamRequest;
 
-class RouteController extends Controller
+class TeamController extends Controller
 {
     private $equipos = [
         1 => ['id' => 1, 'name' => 'Team 1', 'season' => '2021', 'category' => 'First Division', 'coach' => 'Coach 1'],
@@ -52,14 +53,9 @@ class RouteController extends Controller
         return view('anadir-equipo');
     }
 
-    function store(Request $request){
+    function store(StoreTeamRequest $request){
         // 1. Validar. Devuelve SOLO los campos validados, ya limpios.
-        $datos = $request->validate([
-            'name'     => 'required|string|min:2',
-            'category' => 'required|string',
-            'coach'    => 'required|string',
-            'season'   => 'required|digits:4',
-        ]);
+        $datos = $request->validated();
 
         // 2. Partir de la lista actual.
         $equipos = $this->listaEquipos();
